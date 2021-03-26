@@ -1,8 +1,11 @@
-import { Strategy } from './modules/strategy.js';
+import { Game } from './modules/game.main.js';
 
 var startGame = () => {
-    window.game = new Strategy('Deflect');
+    window.game = new Game();
 }
 
-startGame();
-game.play();
+// Page elements
+const startButton = document.getElementById('start-button');
+startButton.addEventListener('click', () => {
+    startGame();
+});

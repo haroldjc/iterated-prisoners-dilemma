@@ -1,14 +1,17 @@
-export class Strategy {
-    constructor(name) {
-        this.name = name;
-    }
+export function random(opponentHistory) {
+    return Math.floor(Math.random() * 2);
+}
 
-    // Default strategy is random
-    play() {
-        console.log('Your move!!!')
-    }
+export function titForTat(opponentHistory) {
+    console.log('Tit for tat');
+}
 
-    move(previousMove) {
-        
-    }
+export function alwaysCooperates() {
+    console.log('Cooperate');
+    return 0;
+}
+
+export function alwaysDefects() {
+    console.log('Defect!');
+    return 1;
 }

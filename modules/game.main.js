@@ -1,10 +1,13 @@
 import { Player, HumanPlayer } from './player.js';
 import * as strategy from './strategy.js';
 
+const MUTUAL_COOP_POINTS = 3;
+const MUTUAL_DEFCT_POINTS = 1;
+const DEFCT_POINTS = 5;
+const SOME = 10;
+
 export class Game {
     constructor(rounds) {
-        // this.playerStrategy = playerStrategy;
-        // this.computerStrategy = computerStrategy;
         this.rounds = rounds;
         this.start();
     }
@@ -12,9 +15,7 @@ export class Game {
     start() {
         console.log(`Game starts, for ${this.rounds} rounds!`);
         window.player1 = new HumanPlayer(strategy.random);
-        window.player2 = new Player(strategy.titForTat);
-
-        // const 
+        window.player2 = new Player(strategy.grimTrigger);
 
         console.log(`Player 1 is using ${window.player1.strategy.name}`);
         console.log(`Player 2 is using ${window.player2.strategy.name}`);
@@ -41,18 +42,18 @@ export class Game {
 
     checkRound(p1, p2) {
         if (p1 && p2) {
-            player1.score += 1;
-            player2.score += 1;
+            player1.score += MUTUAL_DEFCT_POINTS;
+            player2.score += MUTUAL_DEFCT_POINTS;
             // console.log('Both players defected!');
         } else if (!p1 && !p2) {
-            player1.score += 3;
-            player2.score += 3;
+            player1.score += MUTUAL_COOP_POINTS;
+            player2.score += MUTUAL_COOP_POINTS;
             // console.log('Both players cooperated!');
         } else if (p1 == 0 && p2 == 1) {
-            player2.score += 5;
+            player2.score += DEFCT_POINTS;
             // console.log('Player 1 cooperated, player 2 defected');
         } else if (p1 == 1 && p2 == 0) {
-            player1.score += 5;
+            player1.score += DEFCT_POINTS;
             // console.log('Player 1 defected, player 2 cooperated');
         }
     }

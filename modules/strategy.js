@@ -7,7 +7,7 @@ export function titForTat(opponentHistory) {
     if (opponentHistory != undefined) {
         // console.log(opponentHistory[opponentHistory.length-1]);
         if (opponentHistory[opponentHistory.length-1]) {
-            debugger
+            // debugger
             return 1;
         } else {
             return 0;

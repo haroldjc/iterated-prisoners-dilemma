@@ -26,10 +26,8 @@ export class Game {
                 window.player1.turn();
                 window.player2.turn();
             } else {
-                playersHistory[0] = player1.history;
-                playersHistory[1] = player2.history;
-
-                // console.log(player1.history);
+                playersHistory[0] = player1.history.map(value => value);
+                playersHistory[1] = player2.history.map(value => value);
 
                 window.player1.turn(playersHistory[1]);
                 window.player2.turn(playersHistory[0]);

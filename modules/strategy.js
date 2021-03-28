@@ -3,15 +3,24 @@ export function random(opponentHistory) {
 }
 
 export function titForTat(opponentHistory) {
-    console.log('Tit for tat');
+    // if (arguments.length) {
+    if (opponentHistory != undefined) {
+        // console.log(opponentHistory[opponentHistory.length-1]);
+        if (opponentHistory[opponentHistory.length-1]) {
+            debugger
+            return 1;
+        } else {
+            return 0;
+        }
+    } else {
+        return 0;
+    }
 }
 
 export function alwaysCooperates() {
-    console.log('Cooperate');
     return 0;
 }
 
 export function alwaysDefects() {
-    console.log('Defect!');
     return 1;
 }

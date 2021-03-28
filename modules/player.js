@@ -3,12 +3,11 @@ class Player {
         this.strategy = strategy;
         this.history = [];
         this.score = 0;
-
-        console.log(strategy);
     }
 
-    play(opponentHistory) {
-        console.log(opponentHistory);
+    turn(opponentHistory) {
+        let turnResult = this.strategy(opponentHistory);
+        this.history.push(turnResult);
     }
 }
 

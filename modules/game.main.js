@@ -14,8 +14,8 @@ export class Game {
 
     start() {
         console.log(`Game starts, for ${this.rounds} rounds!`);
-        window.player1 = new HumanPlayer(strategy.titForTat);
-        window.player2 = new Player(strategy.pavlov);
+        window.player1 = new HumanPlayer(strategy.random);
+        window.player2 = new Player(strategy.twoTitsForTat);
 
         console.log(`Player 1 is using ${window.player1.strategy.name}`);
         console.log(`Player 2 is using ${window.player2.strategy.name}`);

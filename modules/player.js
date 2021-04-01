@@ -2,7 +2,7 @@ class Player {
     constructor(strategy) {
         this.strategy = strategy;
         this.history = [];
-        this.score = 0;
+        this.score = [];
     }
 
     turn(opponentHistory) {

@@ -1,10 +1,10 @@
 import { Player, HumanPlayer } from './player.js';
 import * as strategy from './strategy.js';
 
-const MUTUAL_COOP_POINTS = 3;
-const MUTUAL_DEFCT_POINTS = 1;
-const DEFCT_POINTS = 5;
-const SOME = 10;
+const MUTUAL_REWARD = 3;
+const MUTUAL_DEFEFCT = 1;
+const TEMPTATION_PAYOFF = 5;
+const SUCKER_PAYOFF = 0;
 
 export class Game {
     constructor(rounds) {
@@ -14,8 +14,8 @@ export class Game {
 
     start() {
         console.log(`Game starts, for ${this.rounds} rounds!`);
-        window.player1 = new HumanPlayer(strategy.random);
-        window.player2 = new Player(strategy.grimTrigger);
+        window.player1 = new HumanPlayer(strategy.titForTat);
+        window.player2 = new Player(strategy.pavlov);
 
         console.log(`Player 1 is using ${window.player1.strategy.name}`);
         console.log(`Player 2 is using ${window.player2.strategy.name}`);
@@ -41,32 +41,39 @@ export class Game {
     }
 
     checkRound(p1, p2) {
+        // Both players defected
         if (p1 && p2) {
-            player1.score += MUTUAL_DEFCT_POINTS;
-            player2.score += MUTUAL_DEFCT_POINTS;
-            // console.log('Both players defected!');
+            player1.score.push(MUTUAL_DEFEFCT);
+            player2.score.push(MUTUAL_DEFEFCT);;
+        // Both players cooperated
         } else if (!p1 && !p2) {
-            player1.score += MUTUAL_COOP_POINTS;
-            player2.score += MUTUAL_COOP_POINTS;
-            // console.log('Both players cooperated!');
+            player1.score.push(MUTUAL_REWARD);
+            player2.score.push(MUTUAL_REWARD);
+        // Player 1 cooperated, player 2 defected
         } else if (p1 == 0 && p2 == 1) {
-            player2.score += DEFCT_POINTS;
-            // console.log('Player 1 cooperated, player 2 defected');
+            player2.score.push(TEMPTATION_PAYOFF);
+            player1.score.push(SUCKER_PAYOFF);
+        // Player 1 defected, player 2 cooperated
         } else if (p1 == 1 && p2 == 0) {
-            player1.score += DEFCT_POINTS;
-            // console.log('Player 1 defected, player 2 cooperated');
+            player1.score.push(TEMPTATION_PAYOFF);
+            player2.score.push(SUCKER_PAYOFF);
         }
     }
 
     showResults() {
-        if (player1.score > player2.score) {
+
+        let scores = [];
+        scores[0] = player1.score.reduce((a, v) => a + v);
+        scores[1] = player2.score.reduce((a, v) => a + v);
+
+        if (scores[0] > scores[1]) {
             console.log(`Player 1 wins over Player 2!`);
-            console.log(`Player 1 has ${player1.score} and player 2 has ${player2.score}`)
-        } else if (player1.score === player2.score) {
-            console.log(`Players draw with ${player1.score} points!`);
+            console.log(`Player 1 has ${scores[0]} and player 2 has ${scores[1]}`)
+        } else if (scores[0] === scores[1]) {
+            console.log(`Players draw with ${scores[0]} points!`);
         } else {
             console.log(`Player 2 wins over Player 1!`);
-            console.log(`Player 2 has ${player2.score} and player 1 has ${player1.score}`)
+            console.log(`Player 2 has ${scores[1]} and player 1 has ${scores[0]}`)
         }
         console.log(player1.history);
         console.log(player2.history);

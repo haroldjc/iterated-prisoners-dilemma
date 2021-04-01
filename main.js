@@ -1,7 +1,7 @@
 import { Game } from './modules/game.main.js';
 
 var startGame = () => {
-    window.game = new Game(10);
+    window.game = new Game(20);
 }
 
 // Page elements

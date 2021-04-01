@@ -41,3 +41,15 @@ export function grimTrigger(opponentHistory) {
         return 0;
     }
 }
+
+export function pavlov() {
+    if (this.score.length) {
+        if (this.score[this.score.length-1] > 0) {
+            return this.history[this.history.length-1];
+        } else {
+            return this.history[this.history.length-1] ? 0 : 1;
+        }
+    } else {
+        return 0;
+    }
+}

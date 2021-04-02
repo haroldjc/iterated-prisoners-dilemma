@@ -1,2 +1,48 @@
+/* Variables */
+/* Layout */
 body {
-  background: #000; }
+  background: #eee;
+  font-family: "Poppins", sans-serif; }
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #222;
+      color: #fff; } }
+
+.main-container {
+  margin: auto;
+  max-width: 1200px; }
+
+.main-heading {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 50px;
+  margin-bottom: 0.1em; }
+
+.page-description {
+  color: #333;
+  max-width: 60%; }
+  @media (prefers-color-scheme: dark) {
+    .page-description {
+      color: #eee; } }
+
+.button,
+button {
+  background: #fff;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 25px; }
+  .button + .button,
+  button + .button, .button +
+  button,
+  button +
+  button {
+    margin-left: 15px; }
+  @media (prefers-color-scheme: dark) {
+    .button,
+    button {
+      border-color: #666;
+      color: #fff;
+      background: #333; } }

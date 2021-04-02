@@ -1,3 +1,58 @@
+/* Variables */
+$fontHeading: 'Bebas Neue', sans-serif;
+$fontCopy: 'Poppins', sans-serif;
+
+/* Layout */
+
 body {
-    background: #000;
+    background: #eee;
+    font-family: $fontCopy;
+
+    @media (prefers-color-scheme: dark) {
+        background: #222;
+        color: #fff;
+    }
+}
+
+.main-container {
+    margin: auto;
+    max-width: 1200px;
+}
+
+.main-heading {
+    font-family: $fontHeading;
+    font-size: 50px;
+    margin-bottom: 0.1em;
+}
+
+.page-description {
+    color: #333;
+    max-width: 60%;
+
+    @media (prefers-color-scheme: dark) {
+        color: #eee;
+    }
+}
+
+.button,
+button {
+    // color: ;
+    background: #fff;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 25px;
+
+    & + & {
+        margin-left: 15px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        border-color: #666;
+        color: #fff;
+        background: #333;
+    }
 }

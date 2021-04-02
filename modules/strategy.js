@@ -93,3 +93,16 @@ export function pavlov() {
         return 0;
     }
 }
+
+export function softMajority(opponentHistory) {
+    if (opponentHistory !== undefined) {
+        let rate = this.opponentRate(opponentHistory);
+        if (rate >= 1) {
+            return 0;
+        } else {
+            return 1;
+        }
+    } else {
+        return 0;
+    }
+}

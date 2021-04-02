@@ -1,0 +1,26 @@
+{
+  "name": "iterated-prisoners-dilemma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "scss": "gulp sass",
+    "watch": "gulp sass:watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haroldjc/iterated-prisoners-dilemma.git"
+  },
+  "author": "Harold Coronado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haroldjc/iterated-prisoners-dilemma/issues"
+  },
+  "homepage": "https://github.com/haroldjc/iterated-prisoners-dilemma#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.1.0",
+    "node-sass": "^5.0.0"
+  }
+}

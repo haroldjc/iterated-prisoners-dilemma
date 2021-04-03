@@ -1,21 +1,39 @@
-import { Game } from './modules/game.main.js';
+import { Game, strategy } from './modules/game.main.js';
 
-var startGame = () => {
-    window.game = new Game(20);
+var startGame = iterations => {
+    window.game = new Game(iterations);
 }
 
 // Page elements
-const startButton = document.getElementById('start-button');
-startButton.addEventListener('click', () => {
-    startGame();
+const buttonSimulation = document.getElementById('button-simulation');
+const buttonStart = document.getElementById('button-start');
+const gameContainers = document.getElementsByClassName('game-container');
+const inputIterations = document.getElementById('iterations');
+
+buttonSimulation.addEventListener('click', () => {
+
+    buttonSimulation.disabled = true;
+
+    let playerStrategySelectors = document.querySelectorAll('.player-selector__item');
+    let strategyArray = Object.entries(strategy);
+    let strategySelector = document.createElement('select');
+    
+    strategyArray.forEach(v => {
+        let optionText = document.createTextNode(v[0]);
+        let option = document.createElement('option');
+        option.appendChild(optionText);
+        strategySelector.appendChild(option);
+    });
+
+    playerStrategySelectors.forEach(el => {
+        el.appendChild(strategySelector.cloneNode(true));
+    });
+
+    let gameContainer = gameContainers[0];
+    gameContainer.style.display = 'block';
+
 });
 
-let matrix = [];
-for(let i=0;i<2;i++){
-    matrix[i] = [];
-    for(let j=0;j<2;j++){
-        matrix[i][j]=`${j},${i}`;
-    }
-}
-
-// console.table(matrix);
+buttonStart.addEventListener('click', () => {
+    startGame(inputIterations.value);
+});

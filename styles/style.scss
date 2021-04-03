@@ -2,6 +2,74 @@
 $fontHeading: 'Bebas Neue', sans-serif;
 $fontCopy: 'Poppins', sans-serif;
 
+$standardElementHeight: 42px;
+
+/* UI Elements */
+
+.button,
+button {
+    // color: ;
+    background: #333;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    height: $standardElementHeight;
+    line-height: $standardElementHeight;
+    padding: 0 20px;
+
+    & + & {
+        margin-left: 10px;
+    }
+
+    &:hover {
+        background: #444;
+        cursor: pointer;
+    }
+
+    &:active,
+    &:focus {
+        border-color: rgb(95, 255, 188);
+        outline: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        border-color: #333;
+        color: #333;
+        background: #fff;
+
+        &:hover {
+            background: #eee;
+        }
+    }
+
+    &[disabled] {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
+/* Forms */
+input {
+    // background: rgb(248, 248, 248);
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 4px;
+    height: $standardElementHeight;
+    padding: 0 10px;
+
+    @media (prefers-color-scheme: dark) {
+        // background: #222;
+        // color: #fff;
+    }
+}
+
+.form_full-width {
+    input {
+        box-sizing: border-box;
+        width: 100%;
+    }
+}
+
 /* Layout */
 
 body {
@@ -16,7 +84,7 @@ body {
 
 .main-container {
     margin: auto;
-    max-width: 1200px;
+    max-width: 960px;
 }
 
 .main-heading {
@@ -34,25 +102,52 @@ body {
     }
 }
 
-.button,
-button {
-    // color: ;
+.box-element {
     background: #fff;
-    border: none;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 16px;
-    height: 50px;
-    line-height: 50px;
-    padding: 0 25px;
-
-    & + & {
-        margin-left: 15px;
-    }
+    box-sizing: border-box;
+    padding: 25px;
 
     @media (prefers-color-scheme: dark) {
-        border-color: #666;
-        color: #fff;
         background: #333;
+        border-color: #555;
     }
 }
+
+/* Game */
+
+.game-container {
+    display: none;
+    margin-top: 40px;
+}
+
+.player-selector {
+    clear: both;
+    width: 100%;
+
+    @at-root #{&}__item {
+        float: left;
+        width: 49%;
+        @extend .box-element;
+    
+        & + & {
+            margin-left: 2%;
+        }
+    
+        h3 {
+            margin-top: 0;
+        }
+    
+        select {
+            width: 100%;
+            height: $standardElementHeight;
+        }
+    }
+}
+
+.game-action {
+    clear: both;
+    @extend .box-element;
+}
+

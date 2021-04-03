@@ -1,4 +1,55 @@
 /* Variables */
+/* UI Elements */
+.button,
+button {
+  background: #333;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 16px;
+  height: 42px;
+  line-height: 42px;
+  padding: 0 20px; }
+  .button + .button,
+  button + .button, .button +
+  button,
+  button +
+  button {
+    margin-left: 10px; }
+  .button:hover,
+  button:hover {
+    background: #444;
+    cursor: pointer; }
+  .button:active, .button:focus,
+  button:active,
+  button:focus {
+    border-color: #5fffbc;
+    outline: none; }
+  @media (prefers-color-scheme: dark) {
+    .button,
+    button {
+      border-color: #333;
+      color: #333;
+      background: #fff; }
+      .button:hover,
+      button:hover {
+        background: #eee; } }
+  .button[disabled],
+  button[disabled] {
+    opacity: 0.5;
+    cursor: default; }
+
+/* Forms */
+input {
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  height: 42px;
+  padding: 0 10px; }
+
+.form_full-width input {
+  box-sizing: border-box;
+  width: 100%; }
+
 /* Layout */
 body {
   background: #eee;
@@ -10,7 +61,7 @@ body {
 
 .main-container {
   margin: auto;
-  max-width: 1200px; }
+  max-width: 960px; }
 
 .main-heading {
   font-family: "Bebas Neue", sans-serif;
@@ -24,25 +75,35 @@ body {
     .page-description {
       color: #eee; } }
 
-.button,
-button {
+.box-element, .player-selector__item, .game-action {
   background: #fff;
-  border: none;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 16px;
-  height: 50px;
-  line-height: 50px;
-  padding: 0 25px; }
-  .button + .button,
-  button + .button, .button +
-  button,
-  button +
-  button {
-    margin-left: 15px; }
+  box-sizing: border-box;
+  padding: 25px; }
   @media (prefers-color-scheme: dark) {
-    .button,
-    button {
-      border-color: #666;
-      color: #fff;
-      background: #333; } }
+    .box-element, .player-selector__item, .game-action {
+      background: #333;
+      border-color: #555; } }
+
+/* Game */
+.game-container {
+  display: none;
+  margin-top: 40px; }
+
+.player-selector {
+  clear: both;
+  width: 100%; }
+  .player-selector__item {
+    float: left;
+    width: 49%; }
+    .player-selector__item + .player-selector__item {
+      margin-left: 2%; }
+    .player-selector__item h3 {
+      margin-top: 0; }
+    .player-selector__item select {
+      width: 100%;
+      height: 42px; }
+
+.game-action {
+  clear: both; }

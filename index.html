@@ -14,10 +14,29 @@
     <section class="main-container">
         <h1 class="main-heading">Iterated Prisoner's Dilemma</h1>
         <p class="page-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, dolor, optio necessitatibus expedita magnam libero, debitis ullam officiis aliquid consequatur error odio unde vel ducimus rem ex eos! Voluptatibus, eum?</p>
-        <button id="start-button2">Test simulation</button>
-        <button id="start-button3">Play against computer</button>
-        
-        <button id="start-button">Start Game</button>
+        <div class="button-collection">
+            <button id="button-simulation">Test simulation</button>
+            <button id="button-computer">Play against computer</button>
+            <!-- <button id="button-3">Start Game</button> -->
+        </div>
+        <div class="game-container">
+            <div class="player-selector">
+                <div class="player-selector__item">
+                    <h3>Player 1</h3>
+                </div>
+                <div class="player-selector__item">
+                    <h3>Player 2</h3>
+                </div>
+            </div>
+            <div class="game-action form_full-width">
+                <p>
+                    <label for="iterations">Iterations</label>
+                    <!-- <input type="range" name="" id="iterations" min="2" max="200" value="20"> -->
+                    <input type="number" name="" id="iterations" max="200" min="2" value="20">
+                </p>
+                <button id="button-start">Start simulation</button>
+            </div>
+        </div>
     </section>
     <script src="main.js" type="module"></script>
 </body>

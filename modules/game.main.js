@@ -1,5 +1,6 @@
 import { Player, HumanPlayer } from './player.js';
 import * as strategy from './strategy.js';
+export { strategy };
 
 const MUTUAL_REWARD = 3;
 const MUTUAL_DEFEFCT = 1;

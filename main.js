@@ -1,7 +1,7 @@
 import { Game, strategy } from './modules/game.main.js';
 
-var startGame = iterations => {
-    window.game = new Game(iterations);
+var startGame = (iterations, strategyOne, strategyTwo) => {
+    window.game = new Game(iterations, strategyOne, strategyTwo);
 }
 
 // Page elements
@@ -10,22 +10,26 @@ const buttonStart = document.getElementById('button-start');
 const gameContainers = document.getElementsByClassName('game-container');
 const inputIterations = document.getElementById('iterations');
 
+/*
+    buttonSimulation
+    Initiate the options and settings for a new game simulation.
+*/
 buttonSimulation.addEventListener('click', () => {
 
     buttonSimulation.disabled = true;
 
     let playerStrategySelectors = document.querySelectorAll('.player-selector__item');
-    let strategyArray = Object.entries(strategy);
     let strategySelector = document.createElement('select');
     
-    strategyArray.forEach(v => {
-        let optionText = document.createTextNode(v[0]);
+    Object.keys(strategy).forEach(v => {
+        let optionText = document.createTextNode(v);
         let option = document.createElement('option');
         option.appendChild(optionText);
         strategySelector.appendChild(option);
     });
 
-    playerStrategySelectors.forEach(el => {
+    playerStrategySelectors.forEach((el, i) => {
+        strategySelector.setAttribute('name', `player-${i}`);
         el.appendChild(strategySelector.cloneNode(true));
     });
 
@@ -34,6 +38,13 @@ buttonSimulation.addEventListener('click', () => {
 
 });
 
+/*
+    buttonStart
+    Start simulation
+*/
 buttonStart.addEventListener('click', () => {
-    startGame(inputIterations.value);
+    const playerOneStrategy = document.querySelector('[name="player-0"]');
+    const playerTwoStrategy = document.querySelector('[name="player-1"]');
+
+    startGame(inputIterations.value, playerOneStrategy.value, playerTwoStrategy.value);
 });

@@ -3,6 +3,7 @@ $fontHeading: 'Bebas Neue', sans-serif;
 $fontCopy: 'Poppins', sans-serif;
 
 $standardElementHeight: 42px;
+$boxGap: 20px;
 
 /* UI Elements */
 
@@ -123,17 +124,15 @@ body {
 }
 
 .player-selector {
-    clear: both;
+    column-gap: $boxGap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: $boxGap;
     width: 100%;
 
-    @at-root #{&}__item {
-        float: left;
-        width: 49%;
+    &__item {
+        // width: 49%;
         @extend .box-element;
-    
-        & + & {
-            margin-left: 2%;
-        }
     
         h3 {
             margin-top: 0;
@@ -147,7 +146,5 @@ body {
 }
 
 .game-action {
-    clear: both;
     @extend .box-element;
 }
-

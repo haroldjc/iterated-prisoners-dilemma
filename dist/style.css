@@ -92,18 +92,13 @@ body {
   margin-top: 40px; }
 
 .player-selector {
-  clear: both;
+  column-gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
   width: 100%; }
-  .player-selector__item {
-    float: left;
-    width: 49%; }
-    .player-selector__item + .player-selector__item {
-      margin-left: 2%; }
-    .player-selector__item h3 {
-      margin-top: 0; }
-    .player-selector__item select {
-      width: 100%;
-      height: 42px; }
-
-.game-action {
-  clear: both; }
+  .player-selector__item h3 {
+    margin-top: 0; }
+  .player-selector__item select {
+    width: 100%;
+    height: 42px; }

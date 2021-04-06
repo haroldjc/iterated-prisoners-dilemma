@@ -8,15 +8,17 @@ const TEMPTATION_PAYOFF = 5;
 const SUCKER_PAYOFF = 0;
 
 export class Game {
-    constructor(rounds) {
+    constructor(rounds, strategyPlayer1, strategyPlayer2) {
         this.rounds = rounds;
+        this.strategyPlayer1 = strategyPlayer1;
+        this.strategyPlayer2 = strategyPlayer2;
         this.start();
     }
 
     start() {
         console.log(`Game starts, for ${this.rounds} rounds!`);
-        window.player1 = new HumanPlayer(strategy.random);
-        window.player2 = new Player(strategy.softMajority);
+        window.player1 = new HumanPlayer(strategy[this.strategyPlayer1]);
+        window.player2 = new Player(strategy[this.strategyPlayer2]);
 
         console.log(`Player 1 is using ${window.player1.strategy.name}`);
         console.log(`Player 2 is using ${window.player2.strategy.name}`);
@@ -24,21 +26,23 @@ export class Game {
         let playersHistory = [];
 
         for (let i = 0; i < this.rounds; i++) {
-            if (i === 0) {
-                window.player1.turn();
-                window.player2.turn();
-            } else {
-                playersHistory[0] = player1.history.map(value => value);
-                playersHistory[1] = player2.history.map(value => value);
+            setTimeout(() => {
+                if (i === 0) {
+                        window.player1.turn();
+                        window.player2.turn();
+                } else {
+                        playersHistory[0] = player1.history.map(value => value);
+                        playersHistory[1] = player2.history.map(value => value);
 
-                window.player1.turn(playersHistory[1]);
-                window.player2.turn(playersHistory[0]);
-            }
-
-            this.checkRound(window.player1.history[i], window.player2.history[i]);
+                        window.player1.turn(playersHistory[1]);
+                        window.player2.turn(playersHistory[0]);
+                }
+                
+                this.checkRound(window.player1.history[i], window.player2.history[i]);
+            }, 300 * i);
         }
 
-        this.showResults();
+        setTimeout(() => this.showResults(), 300 * this.rounds);
     }
 
     checkRound(p1, p2) {
@@ -46,18 +50,22 @@ export class Game {
         if (p1 && p2) {
             player1.score.push(MUTUAL_DEFEFCT);
             player2.score.push(MUTUAL_DEFEFCT);;
+            console.log('Both players defected!');
         // Both players cooperated
         } else if (!p1 && !p2) {
             player1.score.push(MUTUAL_REWARD);
             player2.score.push(MUTUAL_REWARD);
+            console.log('Both players cooperated');
         // Player 1 cooperated, player 2 defected
         } else if (p1 == 0 && p2 == 1) {
             player2.score.push(TEMPTATION_PAYOFF);
             player1.score.push(SUCKER_PAYOFF);
+            console.log('Player 1 cooperated, player 2 defected');
         // Player 1 defected, player 2 cooperated
         } else if (p1 == 1 && p2 == 0) {
             player1.score.push(TEMPTATION_PAYOFF);
             player2.score.push(SUCKER_PAYOFF);
+            console.log('Player 1 defected, player 2 cooperated');
         }
     }
 

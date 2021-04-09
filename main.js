@@ -1,14 +1,18 @@
 import { Game, strategy } from './modules/game.main.js';
 
-var startGame = (iterations, strategyOne, strategyTwo) => {
-    window.game = new Game(iterations, strategyOne, strategyTwo);
-}
-
 // Page elements
 const buttonSimulation = document.getElementById('button-simulation');
 const buttonStart = document.getElementById('button-start');
-const gameContainers = document.getElementsByClassName('game-container');
 const inputIterations = document.getElementById('iterations');
+const gameContainers = document.getElementsByClassName('game-container');
+const gameForm = document.querySelector('.game-action__form');
+const playerDisplay = document.querySelector('.player-display');
+
+var startGame = (iterations, strategyOne, strategyTwo) => {
+    window.game = new Game(iterations, strategyOne, strategyTwo);
+    // gameForm.style.display = 'none';
+    playerDisplay.style.display = 'block';
+}
 
 /*
     buttonSimulation

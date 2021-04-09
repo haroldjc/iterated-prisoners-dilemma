@@ -7,6 +7,10 @@ const MUTUAL_DEFEFCT = 1;
 const TEMPTATION_PAYOFF = 5;
 const SUCKER_PAYOFF = 0;
 
+// Page elements
+const elPlayerOneScore = document.querySelector('.player-1 .js-score');
+const elPlayerTwoScore = document.querySelector('.player-2 .js-score');
+
 export class Game {
     constructor(rounds, strategyPlayer1, strategyPlayer2) {
         this.rounds = rounds;
@@ -39,10 +43,10 @@ export class Game {
                 }
                 
                 this.checkRound(window.player1.history[i], window.player2.history[i]);
-            }, 300 * i);
+            }, 50 * i);
         }
 
-        setTimeout(() => this.showResults(), 300 * this.rounds);
+        setTimeout(() => this.showResults(), 50 * this.rounds);
     }
 
     checkRound(p1, p2) {
@@ -50,23 +54,22 @@ export class Game {
         if (p1 && p2) {
             player1.score.push(MUTUAL_DEFEFCT);
             player2.score.push(MUTUAL_DEFEFCT);;
-            console.log('Both players defected!');
         // Both players cooperated
         } else if (!p1 && !p2) {
             player1.score.push(MUTUAL_REWARD);
             player2.score.push(MUTUAL_REWARD);
-            console.log('Both players cooperated');
         // Player 1 cooperated, player 2 defected
         } else if (p1 == 0 && p2 == 1) {
             player2.score.push(TEMPTATION_PAYOFF);
             player1.score.push(SUCKER_PAYOFF);
-            console.log('Player 1 cooperated, player 2 defected');
         // Player 1 defected, player 2 cooperated
         } else if (p1 == 1 && p2 == 0) {
             player1.score.push(TEMPTATION_PAYOFF);
             player2.score.push(SUCKER_PAYOFF);
-            console.log('Player 1 defected, player 2 cooperated');
         }
+
+        elPlayerOneScore.firstChild.nodeValue = player1.score.reduce((a, v) => a + v);
+        elPlayerTwoScore.firstChild.nodeValue = player2.score.reduce((a, v) => a + v);
     }
 
     showResults() {

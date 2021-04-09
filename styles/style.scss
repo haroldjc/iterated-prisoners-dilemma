@@ -47,6 +47,10 @@ button {
     &[disabled] {
         opacity: 0.5;
         cursor: default;
+
+        &:hover {
+            background: #333;
+        }
     }
 }
 
@@ -136,6 +140,7 @@ body {
     
         h3 {
             margin-top: 0;
+            text-align: center;
         }
     
         select {
@@ -147,4 +152,34 @@ body {
 
 .game-action {
     @extend .box-element;
+
+    &__form {
+        // display: none; //temporary
+    }
+}
+
+.player-display {
+    display: none;
+
+    &__score-group {
+        column-gap: calc(#{$boxGap} * 3);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    &__column {
+        text-align: center;
+    }
+
+    &__score {
+        display: block;
+        font-weight: 400;
+
+        .js-score {
+            display: block;
+            font-size: 32px;
+            font-weight: bold;
+        }
+    }
+
 }
